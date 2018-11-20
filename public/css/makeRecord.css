@@ -1,0 +1,32 @@
+.makeRecord_content{
+	margin: 50px 60px;
+}
+.chooseTimeBtn {
+	border-radius: 5px;
+	background: #1a1515;
+	margin-left: 20px;
+	color: white;
+}
+.time_li {
+	color: #1a1515;
+	font-size: 20px;
+}
+
+.time_span {
+	font-size: 20px;
+}
+.serviceData_p {
+	font-size: 20px;
+	color: #360505;
+}
+
+.availableDate_content{
+	display: flex;
+	justify-content: start;
+	flex-wrap: wrap;
+
+}
+
+.date_block {
+	margin: 20px;
+}

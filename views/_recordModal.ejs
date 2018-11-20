@@ -1,0 +1,31 @@
+<div class="modal fade" id="recordModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editModalLabel">Запись</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="recordForm" action="/record" method="post">
+						<div class="form-group">
+							<label for="recordForm_serviceType">Услуга:</label>
+							<input id="recordForm_serviceType" class="form-control" name="surname" type="text" >
+						</div>
+						<div class="form-group">
+							<label for="editForm_name">Дата:</label>
+							<input id="editForm_name" class="form-control" name="name" type="text" >
+						</div>
+						<div class="form-group">
+							<label for="editForm_patronymic">Время:</label>
+							<input id="editForm_patronymic" class="form-control" name="patronymic" type="text" >
+						</div>
+						<button id="button" class="btn btn-success" type="submit">
+						Записаться</button>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>

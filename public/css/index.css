@@ -1,0 +1,31 @@
+.main_panelBlock{
+	margin-top: 30px;
+	padding-bottom: 50px;
+}
+.main_panelBlock{
+	border-bottom:  2px solid #9d999d;
+}
+.panel_imgBlock > img{
+	width: 100%;
+}
+
+#bigLogo_img {
+	width: 200px;
+}
+
+.panel_inviteBlock:nth-child(2n){
+	border-top: 1px solid grey;
+	border-bottom: 1px solid grey;
+}
+.panel_inviteBlock{
+	padding-top: 40px;
+	font-size: 20px;
+	color: #450a0a;
+}
+.panel_p{
+	text-align: center;
+	padding-bottom: 10px;
+}
+.panel_p:last-child{
+	font-size: 30px;
+}

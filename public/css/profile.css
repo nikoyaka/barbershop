@@ -1,0 +1,24 @@
+.profile_edit_form > label{
+	width: 100px;
+	color: #9d999d;
+	font-size: 20px;
+}
+.profile_edit_form > input {
+	width: 40%;
+}
+#profile_edit_submit{
+	width: 120px;
+	
+}
+.profileContainer{
+	margin: 50px;
+}
+.profile_header{
+	color: #360505;
+}
+.person_info_p {
+	font-size: 18px;
+}
+.person_info_span {
+	font-size: 23px;
+}

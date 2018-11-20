@@ -1,0 +1,30 @@
+.contacts_conteiner, .contactsPage_content{
+	display: flex;
+	justify-content: space-around;
+}
+.contactsPage_content > div {
+	margin: 0px 50px 50px;
+}
+.adressBlock, .workTimeBlock{
+	margin-bottom: 30px;
+	margin-top: 20px;
+}
+.adressBlock_header, .workTimeBlock_header{
+	padding-bottom: 10px;
+	border-bottom: 1px solid grey;
+}
+.adressBlock_p, .workTime_p{
+	color: #292626;
+	font-size: 15px;
+	margin-bottom: -5px;
+}
+
+.contactsPage_header {
+	margin: 30px 50px;
+	border-bottom: 2px solid #450a0a;
+	color: #450a0a;
+}
+
+.imgBlock > img {
+	width: 100%;
+}

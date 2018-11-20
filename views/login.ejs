@@ -1,0 +1,26 @@
+<% include _header %>
+<% include _topMenu %>
+<div class="container-fluid loginPage_content">
+	<div class="row justify-content-center ">
+		<div class="row col-12 justify-content-center ">
+			<div class="col-lg-4  col-md-5  col-sm-5">
+				<h1>Авторизация</h1>
+			</div>
+		</div>
+		<div class="col-12 justify-content-center">		
+				<form id="loginPage_form" action="/login" method="post">
+					<div class="row justify-content-center">
+						<input name="username" type="text" class="col-lg-4 col-md-4 col-sm-6 form-control" placeholder="Username" required autofocus>
+					</div>
+					<div class="row justify-content-center">
+						<input name="password" type="password" class="col-lg-4 col-md-4 col-sm-6 form-control" placeholder="Password" required>
+					</div>
+					<div class="row justify-content-center">
+						<input type="submit" value="Войти" class="btn col-2  loginPage_btn">
+					</div>
+				</form>
+			
+		</div>
+	</div>
+</div>
+<% include _footer %>

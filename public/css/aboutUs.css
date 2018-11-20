@@ -1,0 +1,25 @@
+.aboutUs_img{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 90%;
+	display: block;
+	margin: 0 auto;
+}
+.aboutUs_header{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border-bottom: 2px solid #450a0a;
+	color: #450a0a;
+}
+
+.aboutUs_infoBlock {
+	border-bottom: 2px solid grey;
+	padding-bottom: 30px;
+}
+
+.aboutUs_info {
+	font-size: 20px;
+	margin-top: 20px;
+	padding: 0px 30px;
+	text-align: center;
+}

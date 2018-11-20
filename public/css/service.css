@@ -1,0 +1,102 @@
+.service_menu-main {
+  list-style: none;
+  margin: 40px 0 5px;
+  padding: 25px 0 5px;
+  text-align: center;
+  background: white;
+}
+
+.service_elemBlock_info-opt{
+  list-style: none;
+  text-align: center;
+  color: #9d999d;
+  font-size: 20px;
+  font-weight: : bold;
+}
+
+.service_menu-main li,  .service_elemBlock_info-opt li {display: inline-block;}
+.service_menu-main li:after,  .service_elemBlock_info-opt li:after {
+  content: "|";
+  color: #606060;
+  display: inline-block;
+  vertical-align:top;
+}
+.service_menu-main li:last-child:after, 
+.service_elemBlock_info-opt li:last-child:after {content: none;}
+
+.service_menu-main a {
+  text-decoration: none;  
+  letter-spacing: 2px;
+  position: relative;
+  padding-bottom: 20px;
+  margin: 0 34px 0 30px;
+  font-size: 17px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.service_menu-main a, .service_menu-main a:visited {color: #9d999d;}
+.service_menu-main a.current, .service_menu-main a:hover{color: #feb386;}
+.service_menu-main a:before,
+.service_menu-main a:after {
+  content: "";
+  position: absolute;
+  height: 4px;
+  top: auto;
+  right: 50%;
+  bottom: -5px;
+  left: 50%;
+  background: #feb386;
+  transition: .8s;
+}
+
+@media (max-width: 550px) {
+.service_menu-main {padding-top: 0;}
+.service_menu-main li {display: block;}
+.service_menu-main li:after {content: none;}
+.service_menu-main a {
+  padding: 25px 0 20px; 
+  margin: 0 30px;
+}
+}
+
+.service_elemBlock{
+  margin-top: 20px;
+
+}
+.service_elemBlock_img > img {
+  width: 100%;
+  
+}
+.service_elemBlock_info, .service_elemBlock_img{
+  border: 1px solid black;
+  
+}
+
+
+.service_elemBlock_info-name{
+  text-align: center;
+  color: #9d999d;
+  font-style: italic;
+  font-size: 25px;
+}
+.service_elemBlock_recordBtn{
+  
+  color: white;
+  border-radius: 5px;
+  border: 2px solid #9d999d;
+  background-color: #360505;
+}
+
+#haircut_service_a, #health_service_a {
+  color: #360505;
+  font-style: bold;
+}
+
+.not_auth_p{
+  color: #cf9e36;
+  font-style: italic;
+  text-align: center;
+
+}
+
+

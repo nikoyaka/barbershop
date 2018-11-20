@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Learn About Me</title>
+  <link rel="stylesheet" href="css/contacts.css">
+  <link rel="stylesheet" href="css/index.css">
+
+<% include _header %>
+<div class="mainContainer">
+  <% include _topMenu %>
+
+  <div class="container-fluid main_panelBlock">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-7 col-sm-7 panel_imgBlock">
+          <img src="images/model1.jpg">
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 panel_inviteBlock ">
+          <div class="row justify-content-center">
+            <p class="col-12 panel_p">ГОТОВЫ</p>
+            <p class="col-12 panel_p">К НОВОМУ?</p>
+            <p class="col-12 panel_p"><img id="bigLogo_img" src="images/logo1.jpg"></p>
+            <p class="col-12 panel_p">ЖДЕМ ВАС!</p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+</div>
+<% include _contacts %>
+</body>
+</html>
+
+
+<!--<% users.forEach(function(user) { %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <a href="/users/<%= user.username %>">
+        <%= user.name() %>
+      </a>
+    </div>
+    <% if (user.bio) { %>
+      <div class="panel-body"><%= user.bio %></div>
+    <% } %>
+  </div>
+<% }) %>-->

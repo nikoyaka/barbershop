@@ -1,0 +1,11 @@
+<nav class="top-menu">
+    <ul class="menu-main">
+      <li><a href="/">Главная</a></li>
+      <li><a href="/about">О нас</a></li>
+      <li><a href="/service">Услуги</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <% if (currentUser) { %>
+        <li><a href="/profile">Личный кабинет</a></li>
+      <% } %>
+    </ul>
+</nav>

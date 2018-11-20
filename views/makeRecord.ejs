@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>BarberShop</title>
+  
+  <link rel="stylesheet" href="css/service.css">
+  <link rel="stylesheet" href="css/makeRecord.css">
+
+  
+
+<% include _header %>
+<% include _topMenu %>
+
+<div class="makeRecord_content">
+	<div class="row">
+		<h1>Запись на услугу: <%= serviceName %> </h1>
+	</div>
+	<div class="availableDate_content">
+		<% if (services) { services.forEach(function(service) { %> 
+			<div class="date_block">
+				<p class="serviceData_p"><%= service[1] %></p>
+				<ul class="">
+				<% for (let i = 2; i< service.length; i++) { %>
+					<li class="time_li"> 
+						<span class="time_span"> <%= service[i] %></span>
+						<button class="chooseTimeBtn" time="<%= service[i] %>" value="<%= service[0] %>">Записаться</button>
+					</li>
+				<% } %>
+
+				</ul>
+			</div>
+
+		<% }) } %>
+	</div>
+
+</div>
+
+<script> 
+$(document).on('click','.chooseTimeBtn', function(){
+   
+   let date = ($(this).attr("value"));
+   let time = ($(this).attr("time"));
+   console.log(time);
+   $.ajax({
+            url: '/makeRecord',
+            type: 'POST',
+            data: {
+            	date: date,
+            	time: time,
+            	serviceName: "<%= serviceName %>" 
+            },            
+            success: function(result) {
+                alert("Данные успешно сохранены");
+            },
+            error: function() {
+                alert("ошибка");
+            }
+        });
+
+
+ }
+);
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/topMenu.css">
+  <script
+        src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  </head>
+<body>
+
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <img class="logo_img" src="images/logo1.jpg" >
+    </div>
+    
+    <div class="loginBlock">
+      <% if (currentUser) { %>                   
+            
+          <!--<p class="logout_p"><a href="/logout">Log out</a></p>-->
+          <button class="btn btn-dark btn-lg login_p" ><a href="/logout">Выйти</a></button> 
+          <p id="greeting_p"> Привет, <%= currentUser.name() %> </p>  
+
+        <% } else { %>
+
+        <% include _signupModal %>                            
+        <% include _loginModal %>       
+           
+        <% } %>  
+    </div>                                    
+  </div>
+</div>
+<div class="container">
+  <% errors.forEach(function(error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+  <% }) %>
+  <% infos.forEach(function(info) { %>
+    <div class="alert alert-info" role="alert">
+      <%= info %>
+    </div>
+  <% }) %>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+<script>
+('#loginForm').on('submit', function(event) {
+        
+        event.preventDefault();
+
+        var form = $('#loginForm'),
+            button = $('#login_button');
+
+        $.ajax({
+            url: '/profile',
+            type: 'POST',
+            data: form.serialize(),            
+            success: function(result) {    
+
+            },
+            error: function() {
+                alert("ошибка авторизации");
+                button.attr('disabled', false);
+            }
+        });
+
+    });
+
+('#loginForm').on('submit', function(event) {
+        
+        event.preventDefault();
+
+        var form = $('#signupForm'),
+        button = $('#signup_button');
+
+        $.ajax({
+            url: '/profile',
+            type: 'POST',
+            data: form.serialize(),            
+            success: function(result) {    
+
+            },
+            error: function() {
+                alert("ошибка регистрации");
+                button.attr('disabled', false);
+            }
+        });
+
+    });
+
+
+</script>
