@@ -6,6 +6,10 @@ var availableServiceSchema = mongoose.Schema({
   time: String,
   available: Boolean
 });
+availableServiceSchema.methods.getId = function(){
+	return this._id.toString();
+}
+
 availableServiceSchema.methods.getServiceId = function(){
 	return this.serviceId;
 }

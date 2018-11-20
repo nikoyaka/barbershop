@@ -103,10 +103,11 @@
 		<% if (records) { records.forEach( function(record) { %>
 			<div class="record_block">
 				<p class=""> <%= record.getServiceId() %></p>
-				<p class="">Дата:  <%= record.getDate()%> </p>
+				<p class="">Дата:  <%= record.getDate().getDate() %>.<%= record.getDate().getMonth() %>.<%= record.getDate().getFullYear() %> </p>
 				<p class="">Время: <%= record.getTime()%> </p>
 				<p class="">
-					<button class="">Отменить</button>
+				<%= record.getId() %>
+					<button value="<%= record.getId() %>" class="cancelRecord_btn">Отменить</button>
 				</p>
 			</div>
 
@@ -167,6 +168,25 @@ jQuery(document).ready(function($) {
     });
 
 });
+
+$(document).on('click','.cancelRecord_btn', function(){
+   let record = $(this).attr("value");
+   $.ajax({
+            url: '/cancelRecord',
+            type: 'POST',
+            data: {
+            	record: record
+            },            
+            success: function(result) {
+                alert("Запись отменена");
+            },
+            error: function() {
+                alert("ошибка запроса");
+            }
+        });
+
+
+ });
 
 
 </script>

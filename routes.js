@@ -15,6 +15,15 @@ router.use(function(req, res, next) {
   next();
 });
 
+function ensureAuthenticated(req, res, next){
+  if (req.isAuthenticated()){
+    next();
+  } else {
+    req.flash("info", "You must be logged in to see this page");
+    res.redirect("/login");
+  }
+}
+
 
 router.get("/", function(req, res, next) {
   User.find()                                 
@@ -102,14 +111,7 @@ router.get("/logout", (req, res) => {
 });
 
 
-function ensureAuthenticated(req, res, next){
-  if (req.isAuthenticated()){
-    next();
-  } else {
-    req.flash("info", "You must be logged in to see this page");
-    res.redirect("/login");
-  }
-}
+
 
 
 // topMenu
@@ -135,7 +137,7 @@ router.get("/profile", ensureAuthenticated, (req, res) =>{
   .exec((err, profile) => {
     if (err) {return next(err);}
 
-    AvailableService.find({userId: req.user._id.toString()})
+    AvailableService.find({userId: req.user._id.toString(), date: {$gte: new Date()}})
     .exec( (err, userRecords) => {
       console.log(userRecords);
         res.render("privateOffice", {profile: profile, records: userRecords})
@@ -164,7 +166,7 @@ router.post("/profile", (req, res) => {
 })
 
 
-router.get("/makeRecord", (req, res) => {
+router.get("/makeRecord", ensureAuthenticated, (req, res) =>{
   
   AvailableService.find({serviceId: req.query.service, available: true, date: {$gte: new Date()}})
   .exec((err, services) => {
@@ -205,6 +207,29 @@ router.post("/makeRecord", (req, res) => {
     service.save();
     res.send("ok");
 });
+})
+
+
+router.post("/cancelRecord", (req, res) => {
+  console.log(req.body.record);
+
+  AvailableService.findOne({_id: req.body.record})
+  .exec( (err, record) => {
+
+    console.log(record);
+    record._id = req.body.record;
+    record.serviceId = record.serviceId
+    record.userId = "";
+    record.date = record.date;
+    record.time = record.time;
+    record.available = true;
+
+    record.save();
+    res.send("ok");
+  })
+
+  
+
 })
 
 
