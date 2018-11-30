@@ -10,7 +10,7 @@ passport.use("login", new LocalStartegy((username, password, done) => {
 			return done(err);
 		}
 		if (!user){
-			return done(null, false, {message: "No user has that username!!!"});
+			return done(null, false, {message: "Пользователя с данным именем не существует!!!"});
 		}
 		user.checkPassword(password, (err, isMatch) => {
 			if (err){
@@ -19,7 +19,7 @@ passport.use("login", new LocalStartegy((username, password, done) => {
 			if (isMatch){
 				return done(null, user);
 			} else {
-				return done(null, false, {message: "Invalid password"});
+				return done(null, false, {message: "Неверный пароль"});
 			}
 		});
 	});

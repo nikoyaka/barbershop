@@ -1,12 +1,12 @@
 .makeRecord_content{
 	margin: 50px 60px;
 }
-.chooseTimeBtn {
+/*.chooseTimeBtn {
 	border-radius: 5px;
 	background: #1a1515;
 	margin-left: 20px;
 	color: white;
-}
+}*/
 .time_li {
 	color: #1a1515;
 	font-size: 20px;
@@ -24,7 +24,6 @@
 	display: flex;
 	justify-content: start;
 	flex-wrap: wrap;
-
 }
 
 .date_block {

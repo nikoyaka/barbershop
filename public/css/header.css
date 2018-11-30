@@ -37,3 +37,9 @@
 	margin-top: 30px;
 }
 
+.choose_btn{
+	border-radius: 5px;
+	background: #360505;
+	margin-left: 20px;
+	color: white;
+}

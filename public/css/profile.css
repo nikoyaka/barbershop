@@ -7,8 +7,7 @@
 	width: 40%;
 }
 #profile_edit_submit{
-	width: 120px;
-	
+	width: 120px;	
 }
 .profileContainer{
 	margin: 50px;
@@ -21,4 +20,15 @@
 }
 .person_info_span {
 	font-size: 23px;
+}
+
+.record_block_p {
+	color: #360505;
+	font-size: 18px;
+}
+.record_block_info > .service_name {
+	font-size: 23px;
+}
+.record_block_p > span {
+	font-size: 21px;
 }

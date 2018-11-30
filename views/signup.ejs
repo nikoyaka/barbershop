@@ -1,11 +1,32 @@
 <% include _header %>
-<h1>Sign up</h1>
-<form action="/signup" method="post">
-  <input name="username" type="text" class="form-control" 
-placeholder="Username" required autofocus>
-  <input name="password" type="password" class="form-control" 
-placeholder="Password" required>
-  <input type="submit" value="Sign 
-up" class="btn btn-primary btn-block">
-</form>
+<% include _topMenu %>
+<h1>Регистрация</h1>
+
+
+
+<div class="container-fluid signupPage_content">
+	<div class="row justify-content-center ">
+		<div class="row col-12 justify-content-center ">
+			<div class="col-lg-4  col-md-5  col-sm-5">
+				<h1>Регистрация</h1>
+			</div>
+		</div>
+		<div class="col-12 justify-content-center">		
+				<form id="signupPage_form" action="/signup" method="post">
+					<div class="row justify-content-center">
+						<input name="username" type="text" class="col-lg-4 col-md-4 col-sm-6 form-control" placeholder="Username" required autofocus>
+					</div>
+					<div class="row justify-content-center">
+						<input name="password" type="password" class="col-lg-4 col-md-4 col-sm-6 form-control" placeholder="Password" required>
+					</div>
+					<div class="row justify-content-center">
+						<input type="submit" value="Зарегистрироваться" class="btn col-2  signupPage_btn">
+					</div>
+				</form>
+			
+		</div>
+	</div>
+</div>
+
+
 <% include _footer %>

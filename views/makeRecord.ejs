@@ -5,13 +5,17 @@
   <title>BarberShop</title>
   
   <link rel="stylesheet" href="css/service.css">
-  <link rel="stylesheet" href="css/makeRecord.css">
+  <link rel="stylesheet" href="css/makeRecord.css">  
+  <link rel="stylesheet" href="css/calendar.css">
 
   
 
 <% include _header %>
 <% include _topMenu %>
 
+<div class="calendar">
+  <% include _calendar %>
+</div>
 <div class="makeRecord_content">
 	<div class="row">
 		<h1>Запись на услугу: <%= serviceName %> </h1>
@@ -24,46 +28,59 @@
 				<% for (let i = 2; i< service.length; i++) { %>
 					<li class="time_li"> 
 						<span class="time_span"> <%= service[i] %></span>
-						<button class="chooseTimeBtn" time="<%= service[i] %>" value="<%= service[0] %>">Записаться</button>
+						<button class="chooseTimeBtn choose_btn" time="<%= service[i] %>" value="<%= service[0] %>">Записаться</button>
 					</li>
 				<% } %>
-
 				</ul>
 			</div>
-
 		<% }) } %>
 	</div>
-
 </div>
-
+<script src="js/calendar.js"></script>
 <script> 
-$(document).on('click','.chooseTimeBtn', function(){
-   
-   let date = ($(this).attr("value"));
-   let time = ($(this).attr("time"));
-   console.log(time);
-   $.ajax({
-            url: '/makeRecord',
-            type: 'POST',
-            data: {
-            	date: date,
-            	time: time,
-            	serviceName: "<%= serviceName %>" 
-            },            
-            success: function(result) {
-                alert("Данные успешно сохранены");
-            },
-            error: function() {
-                alert("ошибка");
-            }
-        });
+let currentMonth = new Date().getMonth()+1;
 
+  $(document).on('click','.chooseTimeBtn', function(){
+     
+     let date = ($(this).attr("value"));
+     let time = ($(this).attr("time"));
+     let record = $(this).closest(".time_li");
+     $.ajax({
+              url: '/makeRecord',
+              type: 'POST',
+              data: {
+              	date: date,
+              	time: time,
+              	serviceName: "<%= serviceName %>" 
+              },            
+              success: function(result) {
+                  alert("Данные успешно сохранены");
+                  record.hide();
+              },
+              error: function() {
+                  alert("ошибка");
+              }
+          });
+   }
+  );
+  $(document).on('click','.serviceData_p', function(){
+     console.log($(this).html());
+     let dateArr = $(this).html().split('.');
+     let day = dateArr[0],
+          month = dateArr[1],
+          year = dateArr[2];
+    if (currentMonth != month) {
+      currentMonth = month;
+      currentDate = new Date(year, month - 1);
+      generateCalendar(currentDate);     
+    }
+   }
+  );
 
- }
-);
-
-
+  
 </script>
+
+
 
 </body>
 </html>

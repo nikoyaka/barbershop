@@ -13,8 +13,8 @@
 
 	  <div class="service_menu-block">
 		  <ul class="service_menu-main">
-			  <li><a href="#" id="haircut_service_a">Стрижки и укладки</a></li>
-			  <li><a href="#" id="health_service_a">Окрашивание и лечение</a></li>
+			  <li><a>Стрижки и укладки</a></li>
+			  <li><a>Окрашивание и лечение</a></li>
 			</ul>
 	  </div>
 
@@ -28,7 +28,7 @@
 		  			<div class="row justify-content-center">
 		  				<p class="service_elemBlock_info-name">
 		  					<%= service.getName() %>
-		  				 </p>
+		  				</p>
 		  				<ul class="service_elemBlock_info-opt">
 		  					<li>
 		  						<%= service.getDuration() %>	  						
@@ -36,14 +36,12 @@
 		  					<li>
 		  						<%= service.getPrice() %>
 		  					</li>
-		  				</ul>
-		  				
+		  				</ul>		  				
 		  			</div>
 		  			<% if (currentUser) { %> 
 		  			<p align="center">
 		  				<input service="<%= service.getName() %>" class="service_elemBlock_recordBtn" type="button" value="Записаться">
 		  			</p>
-
 		  			<% } else  { %>
 		  				<p class="not_auth_p">Запись возможна только для авторизованных пользователей</p>
 		  			<% } %>
@@ -52,29 +50,16 @@
 	  		<% }) %>
 	  	<% } %>
 	  </div>
-
 	</div>
 
 <script>
-let currentType = "haircut";
 
-$(document).on('click','.service_elemBlock_recordBtn', function(){
-   
-   let serviceName = ($(this).attr("service"));
-   url = "http://localhost:3000/makeRecord?service=" + serviceName;
-   alert(url);
-
+$(document).on('click','.service_elemBlock_recordBtn', function(){   
+    let serviceName = ($(this).attr("service"));
+    url = "http://localhost:3000/makeRecord?service=" + serviceName;
 	$(location).attr('href', url);
-
  }
 );
-
-function renderServices(){
-	var block = $("#service_content");
-	$("#service_content:nth-child(n)").remove();
-}
-
-
 
 </script>	
 

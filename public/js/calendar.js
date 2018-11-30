@@ -1,9 +1,7 @@
-console.log(serviceName);
-
-
-$(document).ready(function() {
+//$(document).ready(function() {
   var currentDate = new Date();
   function generateCalendar(d) {
+    $(".table").empty();
     function monthDays(month, year) {
       var result = [];
       var days = new Date(year, month, 0).getDate();
@@ -20,13 +18,13 @@ $(document).ready(function() {
       // totalDays: monthDays(d.getMonth(), d.getFullYear()),
       totalDays: d.monthDays(),
       weekDays: [
-        "Понедельник",
-        "Вторник",
-        "Среда",
-        "Четверг",
-        "Пятница",
-        "Суббота",
-        "Воскресение"
+        "Пн",
+        "Вт",
+        "Ср",
+        "Чт",
+        "Пт",
+        "Сб",
+        "Вс"
       ],
       months: [
         "Январь",
@@ -45,7 +43,6 @@ $(document).ready(function() {
     };
     var start = new Date(d.getFullYear(), d.getMonth()).getDay();
     console.log(d.getMonth());
-    console.log("startkey: ", start);
     var cal = [];
     var day = 1;
     for (var i = 0; i <= 6; i++) {
@@ -108,4 +105,6 @@ $(document).ready(function() {
     }
   });
   generateCalendar(currentDate);
-});
+//});
+
+

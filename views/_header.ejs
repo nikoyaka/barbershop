@@ -12,7 +12,7 @@
 <div class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <img class="logo_img" src="images/logo1.jpg" >
+      <a href="/"><img class="logo_img" src="images/logo1.jpg" ></a>
     </div>
     
     <div class="loginBlock">
@@ -51,15 +51,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 <script>
-('#loginForm').on('submit', function(event) {
-        
+('#loginForm').on('submit', function(event) {        
         event.preventDefault();
 
         var form = $('#loginForm'),
             button = $('#login_button');
-
         $.ajax({
-            url: '/profile',
+            url: '/login',
             type: 'POST',
             data: form.serialize(),            
             success: function(result) {    
@@ -79,9 +77,8 @@
 
         var form = $('#signupForm'),
         button = $('#signup_button');
-
         $.ajax({
-            url: '/profile',
+            url: '/signup',
             type: 'POST',
             data: form.serialize(),            
             success: function(result) {    

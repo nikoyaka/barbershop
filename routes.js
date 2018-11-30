@@ -47,7 +47,8 @@ router.post("/signup", function(req, res, next) {
     if (err) { return next(err); }
     if (user) {                                      
       req.flash("error", "User already exists");     
-      return res.redirect("/signup");                
+      return res.redirect("/");      
+      //return res.redirect("/signup")          
     }                                                
     var newUser = new User({         
       username: username,            
@@ -71,29 +72,6 @@ router.post("/signup", function(req, res, next) {
   failureFlash: true
 }));
 
-/*
-create service
-*/
-router.get("/addservice", function (req, res) {
-  var newService = new Service({
-      serviceName: "Стрижка (старший стилист)",
-      price: "от 1 550 руб.",
-      duration: "1 ч."
-  }) ;
-  newService.save();
-});
-
-
-
-
-router.get("/users/:username", function(req, res, next) {
-  User.findOne({ username: req.params.username }, function(err, user) {
-    if (err) { return next(err); }
-    if (!user) { return next(404); }
-    res.render("profile", { user: user });
-  });
-});
-
 
 router.get("/login", (req, res) => {
   res.render("login");
@@ -101,7 +79,8 @@ router.get("/login", (req, res) => {
 
 router.post("/login", passport.authenticate("login", {
   successRedirect: "/",
-  failureRedirect: "/login",
+  failureRedirect: "/",
+  //failureRedirect: "/login"
   failureFlash: true
 }));
 
@@ -109,9 +88,6 @@ router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
-
-
-
 
 
 // topMenu
@@ -138,14 +114,11 @@ router.get("/profile", ensureAuthenticated, (req, res) =>{
     if (err) {return next(err);}
 
     AvailableService.find({userId: req.user._id.toString(), date: {$gte: new Date()}})
+    .sort({date: 1 })
     .exec( (err, userRecords) => {
-      console.log(userRecords);
         res.render("privateOffice", {profile: profile, records: userRecords})
-    })
-
-    
-  })
-  
+    })    
+  })  
 })
 
 router.post("/profile", (req, res) => {
@@ -158,7 +131,6 @@ router.post("/profile", (req, res) => {
    profile.phoneNumber = req.body.phoneNumber;
    profile.mail = req.body.mail;
 
-
     profile.save();
     res.send(profile);
 });
@@ -169,6 +141,7 @@ router.post("/profile", (req, res) => {
 router.get("/makeRecord", ensureAuthenticated, (req, res) =>{
   
   AvailableService.find({serviceId: req.query.service, available: true, date: {$gte: new Date()}})
+  .sort({date: 1})
   .exec((err, services) => {
 
     let mapServices = function(services){
@@ -183,7 +156,7 @@ router.get("/makeRecord", ensureAuthenticated, (req, res) =>{
     for (_key in mapServices){
       key = new Date(_key);
       let day = key.getDate();
-      let month = key.getMonth();
+      let month = key.getMonth()+1;
       let year = key.getFullYear();
       let date = day+"."+month+"."+year;
       let newArrElem = [_key, date].concat(mapServices[key]);
@@ -211,12 +184,9 @@ router.post("/makeRecord", (req, res) => {
 
 
 router.post("/cancelRecord", (req, res) => {
-  console.log(req.body.record);
 
   AvailableService.findOne({_id: req.body.record})
   .exec( (err, record) => {
-
-    console.log(record);
     record._id = req.body.record;
     record.serviceId = record.serviceId
     record.userId = "";

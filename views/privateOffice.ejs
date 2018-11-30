@@ -3,11 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Learn About Me</title>
+  <title>BarberShop</title>
   <link rel="stylesheet" href="css/contacts.css">
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/profile.css">
-
 
 <% include _header %>
 <% include _topMenu %>
@@ -70,7 +69,7 @@
 					<form id="editProfileForm" action="/profile" method="post">
 						<div class="form-group">
 							<label for="editForm_surname">Фамилия:</label>
-							<input id="editForm_surname" class="form-control" name="surname" type="text" >
+							<input id="editForm_surname" class="form-control" name="surname" type="text" >						
 						</div>
 						<div class="form-group">
 							<label for="editForm_name">Имя:</label>
@@ -86,7 +85,7 @@
 						</div>
 						<div class="form-group">
 							<label for="editForm_email">email:</label>
-							<input id="editForm_email" class="form-control" name="mail" type="text">
+							<input id="editForm_email" class="form-control" name="mail" type="text" pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;" title="некорректный адрес">
 						</div>
 						<button id="button" class="btn btn-success" type="submit">
 						Сохранить</button>
@@ -99,97 +98,41 @@
 
 	<div class="client_recordsBlock">
 		<h3 class="">Ваши записи</h3>
-		<div class="">
-		<% if (records) { records.forEach( function(record) { %>
-			<div class="record_block">
-				<p class=""> <%= record.getServiceId() %></p>
-				<p class="">Дата:  <%= record.getDate().getDate() %>.<%= record.getDate().getMonth() %>.<%= record.getDate().getFullYear() %> </p>
-				<p class="">Время: <%= record.getTime()%> </p>
+		<% if (records && records.length !== 0) { records.forEach( function(record) { %>
+		<div class="record_block">		
+			<div class="record_block_info">
+				<p class="record_block_p"> 
+					<span class="service_name"><%= record.getServiceId() %></span>
+				</p>
+				<p class="record_block_p">
+					Дата:  
+					<span><%= record.getDate().getDate() %>.<%= record.getDate().getMonth() + 1 %>.<%= record.getDate().getFullYear() %> </span>
+				</p>
+				<p class="record_block_p">
+					Время: 
+					<span><%= record.getTime()%></span>
+				</p>
 				<p class="">
-				<%= record.getId() %>
-					<button value="<%= record.getId() %>" class="cancelRecord_btn">Отменить</button>
+					<button value="<%= record.getId() %>" class="cancelRecord_btn choose_btn">Отменить</button>
 				</p>
 			</div>
-
-		<% }) }  else { %>
-			<p class="">Вы не записаны ни на одну услугу</p>
-		<% } %>
-
+			<div class="record_block_img">
+				<img src="">
+			</div>
 		</div>
+		<% }) } else { %>
+			<p class="record_block_p">Вы не записаны ни на одну услугу</p>
+		<% } %>
 	</div>
-
-
-
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 <!-- Маска для номера телефона -->
 <script src="js/jquery.maskedinput.min.js"></script>
 
-<script>
+<script src="js/privateOffice.js"></script>
 
-
-
-jQuery(document).ready(function($) {
-
-	$('#editForm_phoneNumber').mask('+7 (999) 999-99-99');
-    
-    // Отправляет данные из формы на сервер и получает ответ
-    $('#editProfileForm').on('submit', function(event) {
-        
-        event.preventDefault();
-
-        var form = $('#editProfileForm'),
-            button = $('#button');
-
-        $.ajax({
-            url: '/profile',
-            type: 'POST',
-            data: form.serialize(),            
-            success: function(result) {
-                alert("Данные успешно сохранены");
-                if (result.surname != "") $("#person_info_surname").text(result.surname);
-                if(result.name != "") $("#person_info_name").text(result.name);
-                if(result.patronymic != "") $("#person_info_patronymic").text(result.patronymic);
-                if(result.phoneNumber != "") $("#person_info_phoneNumber").text(result.phoneNumber);
-                if(result.mail != "") $("#person_info_email").text(result.mail);
-
-            },
-            error: function() {
-                alert("ошибка");
-                button.attr('disabled', false);
-            }
-        });
-
-    });
-
-});
-
-$(document).on('click','.cancelRecord_btn', function(){
-   let record = $(this).attr("value");
-   $.ajax({
-            url: '/cancelRecord',
-            type: 'POST',
-            data: {
-            	record: record
-            },            
-            success: function(result) {
-                alert("Запись отменена");
-            },
-            error: function() {
-                alert("ошибка запроса");
-            }
-        });
-
-
- });
-
-
-</script>
 </body>
 
 </html>
